@@ -7,6 +7,7 @@ const REPO = process.env.GITHUB_REPO.trim();
 const ADMIN_KEY = process.env.ADMIN_KEY.trim();
 const FOUNDRY_LICENSE = process.env.FOUNDRY_LICENSE.trim().replace(/-/g, "");
 
+const APP_PATH = "./foundryvtt-0.7.9-linux"
 const DATA_PATH = "/tmp/foundry-data"
 const SAVE_DATA_TIME = 60000;
 
@@ -115,7 +116,7 @@ async function main() {
         `--adminKey=${ADMIN_KEY}`
     );
     // start app
-    require("./app/main");
+    require(`${APP_PATH}/resources/app/main");
 }
 
 main();
