@@ -6,7 +6,6 @@
         "rpg",
         "github"
     ],
-    "repository": "https://github.com/Stuk/foundry-heroku",
     "success_url": "/",
     "env": {
         "ADMIN_KEY": {
@@ -20,7 +19,7 @@
         "FOUNDRY_VERSION": {
             "description": "The Foundry version to use. Find latest at https://foundryvtt.com/releases/",
             "required": true,
-            "value": "0.7.7"
+            "value": "0.7.9"
         },
         "GITHUB_REPO": {
             "description": "GitHub repository name to store Foundry data in. E.g. username/foundry-data",
