@@ -7,7 +7,7 @@ const REPO = process.env.GITHUB_REPO.trim();
 const ADMIN_KEY = process.env.ADMIN_KEY.trim();
 const FOUNDRY_LICENSE = process.env.FOUNDRY_LICENSE.trim().replace(/-/g, "");
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID.trim();
-const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY.trim();
+const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY.trim();
 const AWS_REGION = process.env.AWS_REGION.trim();
 
 const DATA_PATH = "/tmp/foundry-data"
@@ -109,7 +109,7 @@ async function main() {
     // amazon s3
     fs.writeFileSync(`${DATA_PATH}/Config/awsConfig.json`, JSON.stringify({
         accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_KEY,
+        secretAccessKey: AWS_SECRET_ACCESS_KEY,
         region: AWS_REGION
     }))
 
