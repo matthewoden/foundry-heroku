@@ -116,7 +116,7 @@ async function main() {
         `--adminKey=${ADMIN_KEY}`
     );
     // start app
-    require(`${APP_PATH}/resources/app/main");
+    require(`${APP_PATH}/resources/app/main`);
 }
 
 main();
