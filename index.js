@@ -6,8 +6,10 @@ const TOKEN = process.env.GITHUB_TOKEN.trim();
 const REPO = process.env.GITHUB_REPO.trim();
 const ADMIN_KEY = process.env.ADMIN_KEY.trim();
 const FOUNDRY_LICENSE = process.env.FOUNDRY_LICENSE.trim().replace(/-/g, "");
+const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID.trim();
+const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY.trim();
+const AWS_REGION = process.env.AWS_REGION.trim();
 
-const APP_PATH = "./foundryvtt-0.7.9-linux"
 const DATA_PATH = "/tmp/foundry-data"
 const SAVE_DATA_TIME = 60000;
 
@@ -24,6 +26,7 @@ function init() {
     fs.mkdirSync(`${DATA_PATH}/Config`, { recursive: true });
 
     fs.writeFileSync(`${DATA_PATH}/Config/options.json`, JSON.stringify({
+        awsConfig: "awsConfig.json",
         proxyPort: 443,
         proxySSL: true,
         minifyStaticFiles: true
@@ -103,6 +106,13 @@ async function main() {
         license: FOUNDRY_LICENSE
     }, null, 2));
 
+    // amazon s3
+    fs.writeFileSync(`${DATA_PATH}/Config/awsConfig.json`, JSON.stringify({
+        accessKeyId: AWS_ACCESS_KEY_ID,
+        secretAccessKey: AWS_SECRET_KEY,
+        region: AWS_REGION
+    }))
+
     // start timer to watch for data changes
     saveDataAfterTimeout();
 
@@ -116,7 +126,7 @@ async function main() {
         `--adminKey=${ADMIN_KEY}`
     );
     // start app
-    require(`${APP_PATH}/resources/app/main`);
+    require("./app/main");
 }
 
 main();
